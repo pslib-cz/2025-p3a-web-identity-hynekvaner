@@ -3,13 +3,14 @@ using CoffeeRecordsIdentity.InputModels;
 using CoffeeRecordsIdentity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using CoffeeRecordsIdentity.Data;
 
 namespace CoffeeRecordsIdentity.Pages
 {
-    public class CreateModel(ILogger<CreateModel> logger, ApplicationDbContext context) : PageModel
+    public class CreateModel(ILogger<CreateModel> logger, CoffeeRecordsIdentityContext context) : PageModel
     {
         private readonly ILogger<CreateModel> _logger = logger;
-        private readonly ApplicationDbContext _context = context;
+        private readonly CoffeeRecordsIdentityContext _context = context;
 
         [BindProperty]
         public CoffeeCupIM Input { get; set; } = new();

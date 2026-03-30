@@ -1,12 +1,19 @@
 using CoffeeRecordsIdentity.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using CoffeeRecordsIdentity.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<CoffeeRecordsIdentityContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<CoffeeRecordsIdentityContext>();
+
 builder.Services.AddRazorPages();
+
+
 
 var app = builder.Build();
 
